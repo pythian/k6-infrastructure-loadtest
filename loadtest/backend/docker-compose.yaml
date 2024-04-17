@@ -1,0 +1,5 @@
+services:
+  k6:
+    image: grafana/k6:latest
+    volumes:
+      - ${PWD}/scenarios:/scripts

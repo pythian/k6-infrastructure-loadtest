@@ -1,0 +1,8 @@
+.terraform/
+.terraform.lock.hcl
+.idea
+node_modules
+
+# ignore self generated test files keeping template files
+loadtest/frontend/har/*.har
+loadtest/frontend/scenarios/tests/*.js

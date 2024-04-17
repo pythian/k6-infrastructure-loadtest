@@ -1,0 +1,24 @@
+services:
+  k6:
+    image: grafana/k6:latest
+    volumes:
+      - ${PWD}/scenarios:/scripts:rw
+  k6-frontend:
+    build:
+      dockerfile: ./Dockerfile-k6
+    volumes:
+      - ${PWD}/scenarios:/scripts/project:rw
+  har-to-k6:
+    image: node:20
+    command: >
+      sh -c "cd /scripts
+            make convert-har-to-k6"
+    volumes:
+      - ${PWD}:/scripts:rw
+  puppeteer:
+    build:
+      dockerfile: Dockerfile-puppeteer
+    cap_add:
+      - SYS_ADMIN
+    volumes:
+      - ${PWD}:/home/pptruser/project:rw
